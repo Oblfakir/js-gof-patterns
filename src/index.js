@@ -48,7 +48,10 @@ const spawnButtons = () => {
         Object.entries(value).forEach(([pattern, method]) => {
             const button = document.createElement('button');
             button.textContent = pattern;
-            button.addEventListener('click', () => method(logger));
+            button.addEventListener('click', () => {
+                logger.clear();
+                method(logger);
+            });
             container.appendChild(button);
         });
     });
