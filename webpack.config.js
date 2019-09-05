@@ -29,9 +29,9 @@ module.exports = {
             {
               loader: "css-loader",
               options: {
-                modules: true,
+                modules: false,
                 importLoaders: 1,
-                sourceMap: true
+                sourceMap: false
               }
             }
           ]
