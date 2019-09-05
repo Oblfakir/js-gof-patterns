@@ -3,7 +3,58 @@ import * as creational from './creational';
 import * as structural from './structural';
 import { logger } from './logger';
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    logger.add('message 1');
-    logger.add('message 2');
+const methods = {
+    Creational: {
+        AbstractFactory: creational.AbstractFactory,
+        Builder: creational.Builder,
+        FactoryMethod: creational.FactoryMethod,
+        Prototype: creational.Prototype,
+        Singleton: creational.Singleton
+    },
+    Structural: {
+        Adapter: structural.Adapter,
+        Bridge: structural.Bridge,
+        Composite: structural.Composite,
+        Decorator: structural.Decorator,
+        Facade: structural.Facade,
+        Flyweight: structural.Flyweight,
+        Proxy: structural.Proxy
+    },
+    Behavioral: {
+        ChainOfResponsibility: behavioral.ChainOfResponsibility,
+        Command: behavioral.Command,
+        Interpreter: behavioral.Interpreter,
+        Iterator: behavioral.Iterator,
+        Mediator: behavioral.Mediator,
+        Memento: behavioral.Memento,
+        Observer: behavioral.Observer,
+        State: behavioral.State,
+        Strategy: behavioral.Strategy,
+        TemplateMethod: behavioral.TemplateMethod,
+        Visitor: behavioral.Visitor
+    }
+};
+
+const buttonsContainer = document.getElementById('buttons-container');
+
+const spawnButtons = () => {
+    Object.entries(methods).forEach(([key, value]) => {
+        const container = document.createElement('div');
+        const header = document.createElement('h3');
+        container.appendChild(header);
+        header.textContent = key;
+        buttonsContainer.appendChild(container);
+
+        Object.entries(value).forEach(([pattern, method]) => {
+            const button = document.createElement('button');
+            button.textContent = pattern;
+            button.addEventListener('click', () => method(logger));
+            container.appendChild(button);
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    spawnButtons();
 });
+
