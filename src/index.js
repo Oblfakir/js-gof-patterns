@@ -1,5 +1,7 @@
+import * as behavioral from './behavioral';
+import * as creational from './creational';
+import * as structural from './structural';
+
 document.addEventListener("DOMContentLoaded", function(event) {
-	const element = document.createElement("h1");
-	element.innerHTML = "Hello World";
-	document.body.appendChild(element);
+
 });
