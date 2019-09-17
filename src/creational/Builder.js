@@ -7,59 +7,66 @@ export function Builder(logger) {
     item2.log();
 }
 
-function ItemBuilder(logger) {
-    const item = null;
-    const values = ['some value', 'another value', 'one more thing', 'example item'];
+class ItemBuilder {
+    constructor(logger) {
+        this.logger = logger;
+        this.item = null;
 
-    this.build = function () {
-        logger.add('ItemBuilder: Called a item build init method.');
-        this.item = new Item(logger);
+        this.values = ['some value', 'another value', 'one more thing', 'example item'];
+
+        logger.add('ItemBuilder: ItemBuilder was created');
+    }
+
+    build () {
+        this.logger.add('ItemBuilder: Called a item build init method.');
+        this.item = new Item(this.logger);
         return this;
     };
 
-    this.get = function() {
+    get () {
         return this.item;
     }
 
-    this.builderStep0 = function () {
-        logger.add('ItemBuilder: Called builderStep0');
-        this.item.addValue(values[0]);
+    builderStep0 () {
+        this.logger.add('ItemBuilder: Called builderStep0');
+        this.item.addValue(this.values[0]);
         return this;
     }
 
-    this.builderStep1 = function () {
-        logger.add('ItemBuilder: Called builderStep1');
-        this.item.addValue(values[1]);
+    builderStep1 () {
+        this.logger.add('ItemBuilder: Called builderStep1');
+        this.item.addValue(this.values[1]);
         return this;
     }
 
-    this.builderStep2 = function () {
-        logger.add('ItemBuilder: Called builderStep2');
-        this.item.addValue(values[2]);
+    builderStep2 () {
+        this.logger.add('ItemBuilder: Called builderStep2');
+        this.item.addValue(this.values[2]);
         return this;
     }
 
-    this.builderStep3 = function () {
-        logger.add('ItemBuilder: Called builderStep3');
-        this.item.addValue(values[3]);
+    builderStep3 () {
+        this.logger.add('ItemBuilder: Called builderStep3');
+        this.item.addValue(this.values[3]);
         return this;
     }
-
-    logger.add('ItemBuilder: ItemBuilder was created');
 }
 
-function Item (logger) {
-    this.values = [];
+class Item {
+    constructor(logger) {
+        this.values = [];
+        this.logger = logger;
 
-    this.addValue = function (value) {
-        logger.add('Item: Item was modified with value: ' + value);
+        logger.add('Item: Item was created by ItemFactory');
+    }
+
+    addValue(value) {
+        this.logger.add('Item: Item was modified with value: ' + value);
         this.values.push(value);
         return this;
     }
 
-    this.log = function () {
-        logger.add('Item: item was build with values: ' + this.values.join(', '));
+    log() {
+        this.logger.add('Item: item was build with values: ' + this.values.join(', '));
     }
-
-    logger.add('Item: Item was created by ItemFactory');
 }

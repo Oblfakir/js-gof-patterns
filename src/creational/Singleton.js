@@ -12,6 +12,7 @@ const ItemSingleton = (function () {
 
     function createInstance(logger) {
         logger.add('ItemSingleton: Created instance of singleton object');
+
         return {
             log(message) {
                 logger.add('ItemSingleton: Called singeton method with value: ' + message);

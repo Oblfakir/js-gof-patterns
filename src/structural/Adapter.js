@@ -7,38 +7,48 @@ export function Adapter(logger) {
     adapter.request();
 }
 
-function OldInterface(logger) {
-    this.request = function () {
-        logger.add('OldInterface: Results of old interface');
+class OldInterface {
+    constructor(logger) {
+        this.logger = logger;
+
+        logger.add('OldInterface: Created instance of OldInterface');
     }
 
-    logger.add('OldInterface: Created instance of OldInterface');
+    request() {
+        this.logger.add('OldInterface: Results of old interface');
+    }
 }
 
-function NewInterface(logger) {
-    this.neccessaryValue = null;
+class NewInterface {
+    constructor(logger) {
+        this.logger = logger;
+        this.neccessaryValue = null;
 
-    this.provideNecessaryInfo = function (info) {
+        logger.add('NewInterface: Created instance of NewInterface');
+    }
+    
+
+    provideNecessaryInfo(info) {
         this.neccessaryValue = info.value;
-        logger.add('NewInterface: provided neccessary info: ' + info.value);
+        this.logger.add('NewInterface: provided neccessary info: ' + info.value);
     }
 
-    this.calculate = function () {
-        logger.add('NewInterface: Results of new interface is: ' + this.neccessaryValue);
+    calculate() {
+        this.logger.add('NewInterface: Results of new interface is: ' + this.neccessaryValue);
     }
-
-    logger.add('NewInterface: Created instance of NewInterface');
 }
 
-function InterfacesAdapter(newInfo, logger) {
-    logger.add('InterfacesAdapter called');
-    const newInstance = new NewInterface(logger);
+class InterfacesAdapter {
+    constructor(newInfo, logger) {
+        this.logger = logger;
+        this.newInstance = new NewInterface(logger);
 
-    newInstance.provideNecessaryInfo(newInfo);
+        this.newInstance.provideNecessaryInfo(newInfo);
 
-    return {
-        request() {
-            return newInstance.calculate();
-        }
+        logger.add('InterfacesAdapter: Instance of InterfacesAdapter created');
+    }
+
+    request() {
+        return this.newInstance.calculate();
     }
 }

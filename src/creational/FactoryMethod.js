@@ -11,10 +11,17 @@ export function FactoryMethod(logger) {
     item4.log();
 }
 
-function ItemFactory (logger) {
-    this.createItem = function(type) {
-        logger.add('ItemFactory: Called createItem with type ' + type);
+class ItemFactory {
+    constructor(logger) {
+        this.logger = logger;
+
+        logger.add('ItemFactory: Created instance of ItemFactory');
+    }
+
+    createItem(type) {
+        this.logger.add('ItemFactory: Called createItem with type ' + type);
         let item = null;
+        const logger = this.logger;
 
         switch (type) {
             case '1': {
@@ -43,25 +50,32 @@ function ItemFactory (logger) {
 
         return item;
     }
-    logger.add('ItemFactory: Created instance of ItemFactory');
 }
 
-function ItemType1 (logger) {
-    this.value = 'value 1';
-    logger.add('Item: Created instance of ItemType1');
+class ItemType1 {
+    constructor(logger) {
+        this.value = 'value 1';
+        logger.add('Item: Created instance of ItemType1');
+    }
 }
 
-function ItemType2 (logger) {
-    this.value = 'value 2';
-    logger.add('Item: Created instance of ItemType2');
+class ItemType2 {
+    constructor(logger) {
+        this.value = 'value 2';
+        logger.add('Item: Created instance of ItemType2');
+    }
 }
 
-function ItemType3 (logger) {
-    this.value = 'value 3';
-    logger.add('Item: Created instance of ItemType3');
+class ItemType3 {
+    constructor(logger) {
+        this.value = 'value 3';
+        logger.add('Item: Created instance of ItemType3');
+    }
 }
 
-function ItemType4 (logger) {
-    this.value = 'value 4';
-    logger.add('Item: Created instance of ItemType4');
+class ItemType4 {
+    constructor(logger) {
+        this.value = 'value 4';
+        logger.add('Item: Created instance of ItemType4');
+    }
 }
