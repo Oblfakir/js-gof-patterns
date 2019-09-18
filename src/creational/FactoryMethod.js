@@ -9,6 +9,8 @@ export function FactoryMethod(logger) {
     item2.log();
     item3.log();
     item4.log();
+
+    showDescription();
 }
 
 class ItemFactory {
@@ -78,4 +80,26 @@ class ItemType4 {
         this.value = 'value 4';
         logger.add('Item: Created instance of ItemType4');
     }
+}
+
+function showDescription() {
+    document.getElementById('description').textContent = '';
+
+    [`A Factory Method creates new objects as instructed by the client. One way 
+    to create objects in JavaScript is by invoking a constructor function with 
+    the new operator. There are situations however, where the client does not, 
+    or should not, know which one of several candidate objects to instantiate. 
+    The Factory Method allows the client to delegate object creation while still 
+    retaining control over which type to instantiate.`
+    ,`The key objective of the Factory Method is extensibility. Factory Methods 
+    are frequently used in applications that manage, maintain, or manipulate 
+    collections of objects that are different but at the same time have many 
+    characteristics (i.e. methods and properties) in common. An example would be a 
+    collection of documents with a mix of Xml documents, Pdf documents, and Rtf documents.`]
+        .map(x => {
+            const p = document.createElement('p');
+            p.textContent = x;
+            return p;
+        })
+        .forEach(x => document.getElementById('description').appendChild(x));
 }

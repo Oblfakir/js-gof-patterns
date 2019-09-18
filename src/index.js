@@ -41,8 +41,12 @@ const spawnButtons = () => {
     Object.entries(methods).forEach(([key, value]) => {
         const container = document.createElement('div');
         const header = document.createElement('h3');
+        const buttons = document.createElement('div');
+        buttons.classList.add('buttons-wrapper');
         container.appendChild(header);
         header.textContent = key;
+        container.classList.add('type');
+        container.appendChild(buttons);
         buttonsContainer.appendChild(container);
 
         Object.entries(value).forEach(([pattern, method]) => {
@@ -52,7 +56,7 @@ const spawnButtons = () => {
                 logger.clear();
                 method(logger);
             });
-            container.appendChild(button);
+            buttons.appendChild(button);
         });
     });
 }

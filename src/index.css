@@ -4,3 +4,18 @@ button {
     margin: 5px;
     cursor: pointer;
 }
+
+#buttons-container {
+    display: flex;
+}
+
+p {
+    max-width: 60%;
+}
+
+.type {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    flex-wrap: wrap;
+}

@@ -25,6 +25,8 @@ export function Composite(logger) {
     root.removeChild(left);
 
     root.traverse(1);
+
+    showDescription();
 }
 
 class Node {
@@ -64,4 +66,25 @@ class Node {
 
         this.children.forEach((child) => child.traverse(indent));
     }
+}
+
+function showDescription() {
+    document.getElementById('description').textContent = '';
+
+    [`The Composite pattern allows the creation of objects with properties 
+    that are primitive items or a collection of objects. Each item in the 
+    collection can hold other collections themselves, creating deeply nested structures.`
+    ,`A tree control is a perfect example of a Composite pattern. The nodes of the 
+    tree either contain an individual object (leaf node) or a group of objects 
+    (a subtree of nodes).`
+    ,`All nodes in the Composite pattern share a common set of properties and 
+    methods which supports individual objects as well as object collections. 
+    This common interface greatly facilitates the design and construction of 
+    recursive algorithms that iterate over each object in the Composite collection.`]
+        .map(x => {
+            const p = document.createElement('p');
+            p.textContent = x;
+            return p;
+        })
+        .forEach(x => document.getElementById('description').appendChild(x));
 }
