@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Bridge(logger) {
     const objectToControl = new ObjectToControl(logger);
     const objectBridge = new ObjectBridge(objectToControl, logger);
@@ -34,8 +36,7 @@ class ObjectBridge {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Bridge',
     [`The Bridge pattern allows two components, a client and a service, 
     to work together with each component having its own interface. Bridge 
     is a high-level architectural pattern and its main goal is to write better 
@@ -46,11 +47,5 @@ function showDescription() {
     example ODBC, but behind this API you will find that each driver's implementation 
     is totally different for each database vendor (SQL Server, MySQL, Oracle, etc.).`
     ,`The Bridge pattern is a great pattern for driver development but it is rarely 
-    seen in JavaScript.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    seen in JavaScript.`])
 }

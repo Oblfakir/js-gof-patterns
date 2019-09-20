@@ -63,5 +63,6 @@ const spawnButtons = () => {
 
 document.addEventListener("DOMContentLoaded", function() {
     spawnButtons();
+    document.querySelector('button').dispatchEvent(new Event('click'));
 });
 

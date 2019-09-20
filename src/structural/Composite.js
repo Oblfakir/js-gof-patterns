@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Composite(logger) {
     const root = new Node("root", logger);
     const left = new Node("left", logger)
@@ -69,8 +71,7 @@ class Node {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Composite',
     [`The Composite pattern allows the creation of objects with properties 
     that are primitive items or a collection of objects. Each item in the 
     collection can hold other collections themselves, creating deeply nested structures.`
@@ -80,11 +81,5 @@ function showDescription() {
     ,`All nodes in the Composite pattern share a common set of properties and 
     methods which supports individual objects as well as object collections. 
     This common interface greatly facilitates the design and construction of 
-    recursive algorithms that iterate over each object in the Composite collection.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    recursive algorithms that iterate over each object in the Composite collection.`]);
 }

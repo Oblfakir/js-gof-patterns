@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Facade(logger) {
     const facade = new SubsystemsFacade(logger);
     facade.unitedMethod();
@@ -67,8 +69,7 @@ class SubsystemThree {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Facade',
     [`The Façade pattern provides an interface which shields clients from 
     complex functionality in one or more subsystems. It is a simple pattern 
     that may seem trivial but it is powerful and extremely useful. It is often 
@@ -84,11 +85,5 @@ function showDescription() {
     about. You can hide this code behind a Façade. The Façade exposes only what is 
     necessary and presents a cleaner and easy-to-use interface.`
     ,`Façades are frequently combined with other design patterns. Facades themselves
-     are often implemented as singleton factories.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+     are often implemented as singleton factories.`]);
 }

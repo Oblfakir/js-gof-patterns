@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function FactoryMethod(logger) {
     const itemFactory = new ItemFactory(logger);
     const item1 = itemFactory.createItem('1');
@@ -83,8 +85,7 @@ class ItemType4 {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Factory Method',
     [`A Factory Method creates new objects as instructed by the client. One way 
     to create objects in JavaScript is by invoking a constructor function with 
     the new operator. There are situations however, where the client does not, 
@@ -95,11 +96,5 @@ function showDescription() {
     are frequently used in applications that manage, maintain, or manipulate 
     collections of objects that are different but at the same time have many 
     characteristics (i.e. methods and properties) in common. An example would be a 
-    collection of documents with a mix of Xml documents, Pdf documents, and Rtf documents.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    collection of documents with a mix of Xml documents, Pdf documents, and Rtf documents.`]);
 }

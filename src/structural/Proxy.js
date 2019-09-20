@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Proxy(logger) {
     showDescription();
 
@@ -77,8 +79,7 @@ class Item {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Proxy',
     [`The Proxy pattern provides a surrogate or placeholder object for another 
     object and controls access to this other object.`
     ,`In object-oriented programming, objects do the work they advertise through 
@@ -90,11 +91,5 @@ function showDescription() {
     ,`In situations like these you apply the Proxy pattern and create a proxy object 
     that ‘stands in’ for the original object. The Proxy forwards the request to a 
     target object. The interface of the Proxy object is the same as the original object 
-    and clients may not even be aware they are dealing with a proxy rather than the real object.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    and clients may not even be aware they are dealing with a proxy rather than the real object.`]);
 }

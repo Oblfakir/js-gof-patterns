@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function AbstractFactory(logger) {
     const values = ['some value', 'another value', 'one more thing', 'example item'];
     const itemFactory = new ItemFactory(logger);
@@ -36,8 +38,7 @@ class ItemFactory {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Abstract Factory',
     [`An Abstract Factory creates objects that are related by a common theme.
      In object-oriented programming a Factory is an object that creates other objects.
       An Abstract Factory has abstracted out a theme which is shared by the newly created objects.`
@@ -59,11 +60,5 @@ function showDescription() {
     sharing or re-using of objects, complex logic, or applications that maintain object 
     and type counts, and objects that interact with different resources or devices. If 
     your application needs more control over the object creation process, consider using 
-    a Factory.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    a Factory.`]);
 }

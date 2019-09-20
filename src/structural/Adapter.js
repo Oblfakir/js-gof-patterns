@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Adapter(logger) {
     const oldInstance = new OldInterface(logger);
     const neccessaryInfo = { value: 'some new interface neccessary value'};
@@ -56,8 +58,7 @@ class InterfacesAdapter {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Adapter',
     [`The Adapter pattern translates one interface (an object's properties and methods)
      to another. Adapters allows programming components to work together that otherwise
       wouldn't because of mismatched interfaces. The Adapter pattern is also referred 
@@ -65,11 +66,5 @@ function showDescription() {
     ,`One scenario where Adapters are commonly used is when new components need to 
     be integrated and work together with existing components in the application.`
     ,`Another scenario is refactoring in which parts of the program are rewritten 
-    with an improved interface, but the old code still expects the original interface.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    with an improved interface, but the old code still expects the original interface.`]);
 }

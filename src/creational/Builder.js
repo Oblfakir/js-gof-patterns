@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Builder(logger) {
     const itemBuilder = new ItemBuilder(logger);
     const item1 = itemBuilder.build().builderStep0().builderStep1().builderStep3().get();
@@ -74,8 +76,7 @@ class Item {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Builder',
     [`The Builder pattern allows a client to construct a complex object
      by specifying the type and content only. Construction details are hidden
       from the client entirely.`
@@ -87,11 +88,5 @@ function showDescription() {
     ,`Usually it is the last step that returns the newly created object which makes 
     it easy for a Builder to participate in fluent interfaces in which multiple method 
     calls, separated by dot operators, are chained together (note: fluent interfaces 
-        are implementation of the Chaining Pattern as presented in the Modern patterns section).`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+        are implementation of the Chaining Pattern as presented in the Modern patterns section).`]);
 }

@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Flyweight(logger) {
     showDescription();
 

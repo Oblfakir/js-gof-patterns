@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Decorator(logger) {
     const item = new Item('some value', logger);
     const decoratedItem = new DecoratedItem(item, 'some additional value', logger);
@@ -36,8 +38,7 @@ class DecoratedItem {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Decorator',
     [`The Decorator pattern extends 
     (decorates) an object’s behavior dynamically. The ability to add new behavior at 
     runtime is accomplished by a Decorator object which ‘wraps itself’ around the 
@@ -50,11 +51,5 @@ function showDescription() {
     ,`Decorators provide flexibility to statically typed languages by allowing 
     runtime changes as opposed to inheritance which takes place at compile time. 
     JavaScript, however, is a dynamic language and the ability to extend an object 
-    at runtime is baked into the language itself.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    at runtime is baked into the language itself.`]);
 }

@@ -1,3 +1,5 @@
+import showPatternDescription from '../description';
+
 export function Prototype(logger) {
     const proto = new Item('some item value', logger);
     proto.log();
@@ -41,8 +43,7 @@ class Item {
 }
 
 function showDescription() {
-    document.getElementById('description').textContent = '';
-
+    showPatternDescription('Prototype',
     [`The Prototype Pattern creates new objects, but rather than creating 
     non-initialized objects it returns objects that are initialized with 
     values it copied from a prototype - or sample - object. The Prototype 
@@ -53,11 +54,5 @@ function showDescription() {
     created business object.`
     ,`Classical languages rarely use the Prototype pattern, but JavaScript being 
     a prototypal language uses this pattern in the construction of new objects 
-    and their prototypes.`]
-        .map(x => {
-            const p = document.createElement('p');
-            p.textContent = x;
-            return p;
-        })
-        .forEach(x => document.getElementById('description').appendChild(x));
+    and their prototypes.`]);
 }
