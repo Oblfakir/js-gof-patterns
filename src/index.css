@@ -24,6 +24,15 @@ button:hover {
     display: flex;
 }
 
+@media screen and (max-width: 600px) {
+    button {
+        height: 40px;
+    }
+    #buttons-container {
+        flex-direction: column;
+    }
+}
+
 p {
     max-width: 600px;
 }
