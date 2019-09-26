@@ -2,6 +2,47 @@ import showPatternDescription from '../description';
 
 export function TemplateMethod(logger) {
     showDescription();
+
+    const executor = new Executor(logger);
+
+    logger.add('Added first step to executor');
+    executor.step1 = step1;
+    logger.add('Added second step to executor');
+    executor.step2 = step2;
+    logger.add('Added third step to executor');
+    executor.step3 = step3;
+
+    executor.run();
+}
+
+class Executor {
+    constructor(logger) {
+        this.step1 = null;
+        this.step2 = null;
+        this.step3 = null;
+        this.logger = logger;
+
+        logger.add('Executor: Created instance of Executor');
+    }
+
+    run() {
+        this.logger.add('Executor: called run method');
+        this.logger.add(this.step1());
+        this.logger.add(this.step2());
+        this.logger.add(this.step3());
+    }
+}
+
+function step1() {
+    return 'Result of first step';
+}
+
+function step2() {
+    return 'Result of second step';
+}
+
+function step3() {
+    return 'Result of third step';
 }
 
 function showDescription() {
