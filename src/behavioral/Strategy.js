@@ -2,6 +2,74 @@ import showPatternDescription from '../description';
 
 export function Strategy(logger) {
     showDescription();
+
+    const calculator = new Calculator(logger);
+
+    const firstCalculationMethod = new FirstCalculationMethod(logger);
+    const secondCalculationMethod = new SecondCalculationMethod(logger);
+    const thirdCalculationMethod = new ThirdCalculationMethod(logger);
+
+    calculator.setMethod(firstCalculationMethod);
+    logger.add(calculator.calculate('some value'));
+    calculator.setMethod(secondCalculationMethod);
+    logger.add(calculator.calculate('some value'));
+    calculator.setMethod(thirdCalculationMethod);
+    logger.add(calculator.calculate('some value'));
+}
+
+class Calculator {
+    constructor(logger) {
+        this.logger = logger;
+        this.method = null;
+
+        this.logger.add('Calculator: Created instance of Calculator');
+    }
+
+    setMethod(method) {
+        this.logger.add('Calculator: Changed calculations method');
+        this.method = method; 
+    }
+
+    calculate(value) {
+        this.logger.add(`Calculator: Calculations with value ${value}`);
+        return this.method.calculate(value);
+    }
+}
+
+class FirstCalculationMethod {
+    constructor(logger) {
+        this.logger = logger;
+
+        this.logger.add('SecondCalculationMethod: Created instance of FirstCalculationMethod');
+    }
+
+    calculate(value) {
+        return `Results of calculations with FirstCalculationMethod on value ${value}`;
+    }
+}
+
+class SecondCalculationMethod {
+    constructor(logger) {
+        this.logger = logger;
+
+        this.logger.add('SecondCalculationMethod: Created instance of SecondCalculationMethod');
+    }
+
+    calculate(value) {
+        return `Results of calculations with SecondCalculationMethod on value ${value}`;
+    }
+}
+
+class ThirdCalculationMethod {
+    constructor(logger) {
+        this.logger = logger;
+
+        this.logger.add('SecondCalculationMethod: Created instance of ThirdCalculationMethod');
+    }
+
+    calculate(value) {
+        return `Results of calculations with ThirdCalculationMethod on value ${value}`;
+    }
 }
 
 function showDescription() {

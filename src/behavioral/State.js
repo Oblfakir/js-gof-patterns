@@ -2,6 +2,71 @@ import showPatternDescription from '../description';
 
 export function State(logger) {
     showDescription();
+
+    const stateManager = new StateManager(logger);
+
+    stateManager.start();
+}
+
+class StateManager {
+    constructor(logger) {
+        this.logger = logger;
+        this.count = 0;
+        this.currentState = new FirstState(this, logger);
+    }
+
+    changeState(state) {
+        if (this.count++ >= 10) return;
+        this.logger.add(`StateManager: State changed to ${state.name}`);
+        this.currentState = state;
+        this.currentState.next();
+    }
+
+    start() {
+        this.currentState.next();
+    }
+}
+
+class FirstState {
+    constructor(manager, logger) {
+        this.manager = manager;
+        this.logger = logger;
+        this.name = 'First state';
+    }
+
+    next() {
+        const nextState = new SecondState(this.manager, this.logger);
+        this.logger.add(`FirstState: Changing state to ${nextState.name}`);
+        this.manager.changeState(nextState);
+    }
+}
+
+class SecondState {
+    constructor(manager, logger) {
+        this.manager = manager;
+        this.logger = logger;
+        this.name = 'Second state';
+    }
+
+    next() {
+        const nextState = new ThirdState(this.manager, this.logger);
+        this.logger.add(`FirstState: Changing state to ${nextState.name}`);
+        this.manager.changeState(nextState);
+    }
+}
+
+class ThirdState {
+    constructor(manager, logger) {
+        this.manager = manager;
+        this.logger = logger;
+        this.name = 'Third state';
+    }
+
+    next() {
+        const nextState = new FirstState(this.manager, this.logger);
+        this.logger.add(`FirstState: Changing state to ${nextState.name}`);
+        this.manager.changeState(nextState);
+    }
 }
 
 function showDescription() {
